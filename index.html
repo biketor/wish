@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi PWA</title>
+
+  <!-- Importar manifest -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="Styles.css">
+  <!-- Color de la barra superior en Android -->
+  <meta name="theme-color" content="#2196f3">
+</head>
+<body>
+
+  <h1>Hola, soy una PWA</h1>
+
+  <script src="app.js"></script>
+
+  <!-- Registrar service worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log("Service Worker registrado"))
+        .catch(err => console.log("Error SW", err));
+    }
+  </script>
+
+</body>
+</html>
