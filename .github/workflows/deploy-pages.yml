@@ -4,6 +4,12 @@ on:
   push:
     branches: [ main ]
 
+# Explicit permissions for GITHUB_TOKEN so the action can push to `gh-pages`
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
