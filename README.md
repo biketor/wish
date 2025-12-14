@@ -34,3 +34,17 @@ node server.js 8080
 
 ---
 Hecho por biketor.
+
+## Despliegue (GitHub Pages)
+
+Esta PWA puede desplegarse usando GitHub Pages. He añadido un workflow de GitHub Actions que publica el contenido del repositorio en la rama `gh-pages` automáticamente cada vez que hagas push a `main`.
+
+- URL esperada: `https://biketor.github.io/wish/` (puede tardar unos minutos tras el primer despliegue).
+
+## Archivos clave
+
+- `service-worker.js` — Service Worker con precache individual y fallback.
+- `manifest.json` — Metadata PWA (icons en `icons/`).
+- `server.js` — Servidor local para pruebas en `localhost:8080`.
+
+Si quieres que use otra rama o carpeta para publicar, dímelo y ajusto el workflow.
