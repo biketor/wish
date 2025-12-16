@@ -51,14 +51,24 @@ main {
 .logo {
   margin-bottom: 40px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 16px;
 }
 
-.logo-img {
-  max-width: 200px;
-  height: auto;
-  filter: drop-shadow(0 4px 15px rgba(212, 175, 55, 0.2));
+.logo svg {
+  width: 80px;
+  height: 80px;
+  color: var(--color-primary);
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: var(--color-primary);
+  text-transform: uppercase;
 }
 
 /* Formulario */
