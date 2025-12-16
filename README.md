@@ -23,7 +23,7 @@ node server.js 8080
 ## Notas técnicas
 
 - Service worker: `service-worker.js` — precache individual y fallback HTML.
-- Manifest: `manifest.json` (ahora usa iconos PNG en `icons/`).
+- Manifest: `manifest.json` (usa iconos SVG en `icons/`).
 - Servidor simple: `server.js` sirve archivos estáticos en `localhost:8080`.
 
 ## Contribuir
@@ -37,12 +37,9 @@ Hecho por biketor.
 
 ## Despliegue (GitHub Pages)
 
-Se publica bajo el subpath `https://biketor.github.io/wish/`.
+Esta PWA puede desplegarse usando GitHub Pages. He añadido un workflow de GitHub Actions que publica el contenido del repositorio en la rama `gh-pages` automáticamente cada vez que hagas push a `main`.
 
-Cambios aplicados para compatibilidad con Pages:
-- En `index.html` se añadió `<base href="/wish/">` para que las rutas resuelvan bajo el subpath.
-- En `manifest.json` se configuró `start_url` y `scope` a `/wish/` y se cambiaron los iconos a PNG.
-- En `service-worker.js` se usa `BASE = "/wish"` para construir rutas cacheadas y se incrementó `CACHE` a `mi-pwa-cache-v2`.
+- URL esperada: `https://biketor.github.io/wish/` (puede tardar unos minutos tras el primer despliegue).
 
 ## Archivos clave
 
