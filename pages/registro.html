@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro - Mi PWA</title>
+
+  <!-- Importar manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/Styles.css">
+  <!-- Color de la barra superior en Android -->
+  <meta name="theme-color" content="#2196f3">
+</head>
+<body>
+
+  <div class="app">
+    <main>
+      <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="/assets/logo.png" alt="WIZH Logo" class="logo-img" />
+        </div>
+
+        <!-- Formulario -->
+        <form class="form" id="wizFormRegistro">
+          <div class="form-group">
+            <input type="text" placeholder="Tu nombre y apellido" required />
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Tu email" required />
+          </div>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" required />
+              <span>Al registrarte o utilizar esta aplicación, aceptas regirte por nuestros Términos y Condiciones y reconoces haber leído nuestra Política de Privacidad.</span>
+            </label>
+          </div>
+          <button type="submit" class="btn-primary">Ok</button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="login-link">
+          <p>¿Ya tienes cuenta?</p>
+          <a href="#">INICIAR SESIÓN</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+
+  <!-- Registrar service worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(() => console.log("Service Worker registrado"))
+        .catch(err => console.log("Error SW", err));
+    }
+  </script>
+
+</body>
+</html>

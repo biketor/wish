@@ -1,6 +1,7 @@
-const CACHE = "mi-pwa-cache-v1";
+const CACHE = "mi-pwa-cache-v3";
 const ARCHIVOS = [
   "/index.html",
+  "/pages/registro.html",
   "/Styles.css",
   "/app.js",
   "/manifest.json",
@@ -8,7 +9,7 @@ const ARCHIVOS = [
   "/icons/icon-192.svg",
   "/icons/icon-512.svg",
   "/assets/background.png",
-  "imagenes%20wizh/optimizadas/logo.png"
+  "/assets/logo.png"
 ];
 
 // Simple offline fallback HTML (shown when resource is not cached and offline)
