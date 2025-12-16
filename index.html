@@ -15,19 +15,42 @@
 <body>
 
   <div class="app">
-    <header>
-      <h1>WIZH</h1>
-    </header>
     <main>
       <div class="container">
-        <h1>Hola, soy una PWA</h1>
-        <p>Se ajusta automáticamente a pantallas de celulares y tablets.</p>
-        <button>Acción principal</button>
+        <!-- Logo -->
+        <div class="logo">
+          <svg class="spiral" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 Q70,30 70,50 Q70,70 50,70" fill="none" stroke="currentColor" stroke-width="4" />
+            <path d="M50,10 Q30,30 30,50 Q30,70 50,70" fill="none" stroke="currentColor" stroke-width="4" />
+            <path d="M50,30 Q60,40 60,50" fill="none" stroke="currentColor" stroke-width="4" />
+          </svg>
+          <h1>WIZH</h1>
+        </div>
+
+        <!-- Formulario -->
+        <form class="form" id="wizForm">
+          <div class="form-group">
+            <input type="text" placeholder="Tu nombre y apellido" required />
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Tu email" required />
+          </div>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" required />
+              <span>Al registrarte o utilizar esta aplicación, aceptas regirte por nuestros Términos y Condiciones y reconoces haber leído nuestra Política de Privacidad.</span>
+            </label>
+          </div>
+          <button type="submit" class="btn-primary">Ok</button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="login-link">
+          <p>¿Ya tienes cuenta?</p>
+          <a href="#">INICIAR SESIÓN</a>
+        </div>
       </div>
     </main>
-    <footer>
-      <p>Hecho por biketor</p>
-    </footer>
   </div>
 
   <script src="app.js"></script>
