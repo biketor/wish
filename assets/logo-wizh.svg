@@ -1,0 +1,18 @@
+<svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Spirals -->
+  <g id="spirals">
+    <!-- Top spiral -->
+    <path d="M 150 40 Q 180 60 180 100 Q 180 140 150 140 Q 120 140 120 100 Q 120 70 140 50" 
+          stroke="#b8951d" stroke-width="18" fill="none" stroke-linecap="round"/>
+    <!-- Bottom left spiral -->
+    <path d="M 80 180 Q 50 200 50 240 Q 50 280 80 280 Q 110 280 110 240 Q 110 210 90 190" 
+          stroke="#b8951d" stroke-width="18" fill="none" stroke-linecap="round"/>
+    <!-- Bottom right spiral -->
+    <path d="M 220 180 Q 250 200 250 240 Q 250 280 220 280 Q 190 280 190 240 Q 190 210 210 190" 
+          stroke="#b8951d" stroke-width="18" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Text WIZH -->
+  <text x="150" y="360" font-family="Georgia, serif" font-size="72" font-weight="normal" 
+        fill="#b8951d" text-anchor="middle" letter-spacing="8">WIZH</text>
+</svg>
