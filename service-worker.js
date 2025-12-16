@@ -7,7 +7,8 @@ const ARCHIVOS = [
   "/favicon.ico",
   "/icons/icon-192.svg",
   "/icons/icon-512.svg",
-  "/assets/background.png"
+  "/assets/background.png",
+  "/imagenes/optimizadas/logo.png"
 ];
 
 // Simple offline fallback HTML (shown when resource is not cached and offline)
