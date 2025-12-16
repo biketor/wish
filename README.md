@@ -1,50 +1,64 @@
-# WISH — Progressive Web App (PWA)
+# WIZH — PWA con React + Vite
 
-Aplicación PWA de ejemplo (en español). Incluye service worker para soporte offline.
+Aplicación PWA moderna construida con **React 18**, **Vite 7** y **vite-plugin-pwa**. Navegación SPA (React Router), estilos globales en CSS y soporte offline con Service Worker generado automáticamente.
 
-## Ejecutar localmente
+## Scripts
+- `npm install` — instala dependencias
+- `npm run dev` — dev server con HMR (http://localhost:5173)
+- `npm run build` — build optimizado en `dist/`
+- `npm run preview` — sirve el build en http://localhost:4173
 
-1. Asegúrate de tener Node.js instalado.
-2. Inicia el servidor local (desde la carpeta del proyecto):
+## Rutas
+- `/` — Splash
+- `/preregistro` — Registro email/Google
+- `/registro` — Formulario de registro
+- `/login` — Inicio de sesión
 
-```powershell
-cd C:\Users\Biketor\Documents\project\wizh
-node server.js 8080
+## Estructura
+```
+index.html              # HTML raíz (monta src/main.jsx)
+vite.config.js          # Config Vite + PWA
+public/
+	manifest.json         # Metadata PWA
+	assets/               # Imágenes (logo, fondo)
+	icons/                # Íconos SVG (email, google, arrow-left)
+src/
+	main.jsx              # Entrada React, registra SW (plugin)
+	App.jsx               # Router
+	Styles.css            # Estilos globales
+	pages/
+		Splash.jsx
+		Preregistro.jsx
+		Registro.jsx
+		Login.jsx
 ```
 
-3. Abre `http://localhost:8080` en el navegador.
+## PWA (vite-plugin-pwa)
+- SW y manifest se generan al hacer `npm run build`.
+- En desarrollo (`npm run dev`) el SW no se registra; prueba offline en `npm run preview` o en producción.
+- Para ver caché/offline: DevTools → Application → Service Workers / Cache Storage.
 
-## Probar modo offline
+## Desarrollo
+- La mayoría de cambios se reflejan sin reiniciar gracias a HMR.
+- Reinicia `npm run dev` solo si cambias `vite.config.js`, `package.json` o `.env`.
 
-- Abre DevTools → Application → Service Workers y comprueba que el SW está registrado.
-- Para simular condiciones de baja conectividad usa DevTools → Network → "Slow 3G".
-- Para probar offline en un servidor real, despliega en HTTPS y luego activa "Offline".
+## Despliegue
+- Ejecuta `npm run build` y sube `dist/` a Vercel, Netlify o GitHub Pages.
 
-## Notas técnicas
+## Notas
+- Assets públicos: usar rutas absolutas (`/assets/...`, `/icons/...`).
+- Estilos centralizados en `src/Styles.css` con variables de color.
+- No hay Service Worker manual; lo genera el plugin.
 
-- Service worker: `service-worker.js` — precache individual y fallback HTML.
-- Manifest: `manifest.json` (usa iconos SVG en `icons/`).
-- Servidor simple: `server.js` sirve archivos estáticos en `localhost:8080`.
+## Checklist de despliegue
+- `npm run build` sin errores.
+- `npm run preview` y verificación de rutas SPA.
+- DevTools → Application → Service Workers: SW "activated" y manifest sin warnings.
+- Prueba offline en preview (Network → Offline) y recarga.
+- Revisar que `/assets` e `/icons` carguen (sin 404) y que los íconos del manifest se vean en Application → Manifest.
 
-## Contribuir
-
-1. Crea una rama nueva: `git checkout -b feature/nombre`
-2. Haz cambios, `git add` y `git commit`.
-3. Haz `git push origin feature/nombre` y abre un pull request.
-
----
-Hecho por biketor.
-
-## Despliegue (GitHub Pages)
-
-Esta PWA puede desplegarse usando GitHub Pages. He añadido un workflow de GitHub Actions que publica el contenido del repositorio en la rama `gh-pages` automáticamente cada vez que hagas push a `main`.
-
-- URL esperada: `https://biketor.github.io/wish/` (puede tardar unos minutos tras el primer despliegue).
-
-## Archivos clave
-
-- `service-worker.js` — Service Worker con precache individual y fallback.
-- `manifest.json` — Metadata PWA (icons en `icons/`).
-- `server.js` — Servidor local para pruebas en `localhost:8080`.
-
-Si quieres que use otra rama o carpeta para publicar, dímelo y ajusto el workflow.
+## Troubleshooting rápido
+- **SW no se registra**: asegurarse de servir por HTTPS o `localhost`; probar con `npm run preview` en vez de `npm run dev`.
+- **Offline no funciona**: confirma que el SW esté "activated" y recarga con "Empty cache and hard reload" para tomar la versión nueva.
+- **Assets 404**: usar rutas absolutas (`/assets/...`, `/icons/...`) en JSX/CSS.
+- **Rutas rompen al refrescar**: desplegar con soporte a SPA (fallback a `index.html`); en static hosts, configurar redirect al index.

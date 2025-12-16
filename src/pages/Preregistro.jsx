@@ -12,7 +12,7 @@ function Preregistro() {
           </div>
 
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '30px' }}>
+            <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '30px', color: '#d4af37' }}>
               Regístrate crea tus deseo<br />y comienza a creer.
             </p>
           </div>
