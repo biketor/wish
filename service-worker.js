@@ -1,13 +1,14 @@
-const CACHE = "mi-pwa-cache-v1";
+const CACHE = "mi-pwa-cache-v2";
+const BASE = "/wish"; // GitHub Pages project site base path
 const ARCHIVOS = [
-  "/index.html",
-  "/Styles.css",
-  "/app.js",
-  "/manifest.json",
-  "/favicon.ico",
-  "/icons/icon-192.svg",
-  "/icons/icon-512.svg",
-  "/assets/background.png"
+  `${BASE}/index.html`,
+  `${BASE}/Styles.css`,
+  `${BASE}/app.js`,
+  `${BASE}/manifest.json`,
+  `${BASE}/favicon.ico`,
+  `${BASE}/icons/icon-192.png`,
+  `${BASE}/icons/icon-512.png`,
+  `${BASE}/assets/background.png`
 ];
 
 // Simple offline fallback HTML (shown when resource is not cached and offline)
@@ -99,7 +100,7 @@ self.addEventListener("fetch", (event) => {
         if (isNavigation) {
           console.log('[SW] offline navigation - returning index.html or fallback');
           // Return cached index.html or offline page
-          return caches.match('/index.html').then(cachedIndex => {
+          return caches.match(`${BASE}/index.html`).then(cachedIndex => {
             if (cachedIndex) {
               console.log('[SW] serving cached index.html');
               return cachedIndex;
