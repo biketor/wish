@@ -2,16 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './Styles.css';
-import { registerSW } from 'virtual:pwa-register';
 
-registerSW({
-  onRegistered() {
-    console.log('Service Worker registrado');
-  },
-  onRegisterError(error) {
-    console.log('Error SW', error);
-  }
-});
+// Service Worker se registra automáticamente en build
+// En desarrollo, no es necesario registrar manualmente
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

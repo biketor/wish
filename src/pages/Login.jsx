@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Registro() {
+function Login() {
   return (
     <div className="app">
       <main>
@@ -30,33 +30,19 @@ function Registro() {
             <img src="/assets/logo.png" alt="WIZH Logo" className="logo-img" />
           </div>
 
-          <form className="form" id="wizFormRegistro">
-            <div className="form-group">
-              <input type="text" placeholder="Tu nombre y apellido" required />
-            </div>
+          <form className="form" id="wizFormLogin">
             <div className="form-group">
               <input type="email" placeholder="Tu email" required />
             </div>
-            <div className="checkbox-group">
-              <label>
-                <input type="checkbox" required />
-                <span>
-                  Al registrarte o utilizar esta aplicación, aceptas regirte por nuestros Términos y Condiciones y
-                  reconoces haber leído nuestra Política de Privacidad.
-                </span>
-              </label>
+            <div className="form-group">
+              <input type="password" placeholder="Tu contraseña" required />
             </div>
-            <button type="submit" className="btn-primary">Ok</button>
+            <button type="submit" className="btn-primary">Iniciar sesión</button>
           </form>
-
-          <div className="login-link">
-            <p>¿Ya tienes cuenta?</p>
-            <Link to="/preregistro">INICIAR SESIÓN</Link>
-          </div>
         </div>
       </main>
     </div>
   );
 }
 
-export default Registro;
+export default Login;
