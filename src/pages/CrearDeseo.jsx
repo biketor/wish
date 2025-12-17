@@ -43,7 +43,7 @@ const CONFIGURACIONES = {
   deseo3: {
     backgroundImage: '/assets/background-deseo3.png',
     label: 'Escribe tu tercer deseo',
-    nextRoute: null,
+    nextRoute: '/reel',
     prevRoute: '/crear-deseo-2',
     quote: {
       parts: [
