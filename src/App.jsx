@@ -8,6 +8,7 @@ import Preregistro from './pages/Preregistro';
 import Registro from './pages/Registro';
 import Login from './pages/Login';
 import CrearDeseo from './pages/CrearDeseo';
+import Reel from './pages/Reel';
 
 function App() {
   useEffect(() => {
@@ -49,6 +50,7 @@ function App() {
           <Route path="/crear-deseo" element={<CrearDeseo tipo="deseo1" />} />
           <Route path="/crear-deseo-2" element={<CrearDeseo tipo="deseo2" />} />
           <Route path="/crear-deseo-3" element={<CrearDeseo tipo="deseo3" />} />
+          <Route path="/reel" element={<Reel />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
