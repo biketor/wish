@@ -37,3 +37,4 @@ yarn-error.log*
 /build/
 *.zip
 .vercel
+.env*.local
