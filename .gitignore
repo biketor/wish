@@ -38,3 +38,6 @@ yarn-error.log*
 *.zip
 .vercel
 .env*.local
+
+# Imágenes de trabajo local
+imagenes\ wizh/optimizadas/
