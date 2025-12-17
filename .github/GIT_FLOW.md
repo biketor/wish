@@ -16,6 +16,54 @@ Este proyecto usa **Git Flow** para organizar el desarrollo y despliegues.
 - Branch base para nuevas features
 - Workflow: [`.github/workflows/vercel-preview.yml`](.github/workflows/vercel-preview.yml)
 
+## Comandos Básicos
+
+### Cambiar de Branch
+```bash
+# Cambiar a develop
+git checkout develop
+
+# Cambiar a main
+git checkout main
+
+# Cambiar a un branch remoto que no tienes localmente
+git fetch origin
+git checkout nombre-branch
+```
+
+### Ver Branches
+```bash
+# Ver branch actual (tiene un *)
+git branch
+
+# Ver todos los branches (locales y remotos)
+git branch -a
+
+# Ver solo remotos
+git branch -r
+```
+
+### Obtener Branches Remotos
+```bash
+# Descargar información de branches remotos sin mergear
+git fetch origin
+
+# Descargar un branch específico del remoto
+git fetch origin nombre-branch
+
+# Después de fetch, cambiar al branch
+git checkout nombre-branch
+```
+
+### Actualizar Branch Actual
+```bash
+# Obtener últimos cambios del remoto
+git pull origin nombre-branch
+
+# O si ya estás en el branch
+git pull
+```
+
 ## Flujo de Trabajo
 
 ### 1️⃣ Desarrollo de Features
