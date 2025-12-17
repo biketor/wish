@@ -1,0 +1,37 @@
+/* Estilos específicos para Preregistro */
+
+.intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.introText {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: var(--color-primary);
+}
+
+.btnEmail, .btnGoogle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btnGoogle {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.error {
+  color: #ff4444;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 16px;
+}

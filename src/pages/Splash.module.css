@@ -1,0 +1,35 @@
+/* Estilos específicos para Splash */
+
+.container {
+  display: grid;
+  place-items: center;
+  min-height: 70vh;
+}
+
+.userInfo {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.welcomeText {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.sessionText {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.logoutBtn {
+  font-size: 0.9rem;
+  padding: 10px 24px;
+}
+
+.startText {
+  color: var(--color-text-light);
+  text-align: center;
+  margin-top: 20px;
+}

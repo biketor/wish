@@ -1,4 +1,7 @@
-/* Estilos base responsivos */
+/* ==========================================
+   VARIABLES GLOBALES Y ESTILOS BASE
+   ========================================== */
+
 :root {
   --color-primary: #d4af37;
   --color-dark-bg: #0a1929;
@@ -9,7 +12,9 @@
   --max-content-width: 440px;
 }
 
-* { box-sizing: border-box; }
+* { 
+  box-sizing: border-box; 
+}
 
 html, body {
   margin: 0;
@@ -29,6 +34,10 @@ body {
   overflow-x: hidden;
 }
 
+/* ==========================================
+   LAYOUT GLOBAL (usado por múltiples páginas)
+   ========================================== */
+
 .app {
   min-height: 100vh;
   display: grid;
@@ -47,6 +56,10 @@ main {
   text-align: center;
 }
 
+/* ==========================================
+   COMPONENTES REUTILIZABLES
+   ========================================== */
+
 /* Logo */
 .logo {
   margin-bottom: 50px;
@@ -61,7 +74,7 @@ main {
   filter: drop-shadow(0 4px 15px rgba(212, 175, 55, 0.2));
 }
 
-/* Formulario */
+/* Formularios */
 .form {
   display: flex;
   flex-direction: column;
@@ -120,7 +133,7 @@ main {
   accent-color: var(--color-primary);
 }
 
-/* Botón primario */
+/* Botones */
 .btn-primary {
   padding: 14px 32px;
   border: none;
@@ -146,7 +159,12 @@ main {
   transform: translateY(0);
 }
 
-/* Botón secundario */
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .btn-secondary {
   padding: 14px 32px;
   border: none;
@@ -172,7 +190,13 @@ main {
   transform: translateY(0);
 }
 
-/* Login Link */
+.btn-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Links de login */
 .login-link {
   display: flex;
   flex-direction: column;
@@ -201,7 +225,10 @@ main {
   color: #e8c547;
 }
 
-/* Media queries móviles */
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
 @media (max-width: 480px) {
   .container {
     padding: 30px 16px;
@@ -222,7 +249,7 @@ main {
     font-size: 0.95rem;
   }
 
-  .btn-primary {
+  .btn-primary, .btn-secondary {
     padding: 12px 28px;
     font-size: 0.95rem;
   }
