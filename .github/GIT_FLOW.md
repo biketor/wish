@@ -26,6 +26,9 @@ git checkout develop
 # Cambiar a main
 git checkout main
 
+# Cambiar a un branch remoto que no tienes localmente
+git fetch origin
+git checkout nombre-branch
 # O con el comando moderno
 git switch develop
 git switch main
@@ -41,6 +44,18 @@ git branch -a
 
 # Ver solo remotos
 git branch -r
+```
+
+### Obtener Branches Remotos
+```bash
+# Descargar información de branches remotos sin mergear
+git fetch origin
+
+# Descargar un branch específico del remoto
+git fetch origin nombre-branch
+
+# Después de fetch, cambiar al branch
+git checkout nombre-branch
 ```
 
 ### Actualizar Branch Actual
