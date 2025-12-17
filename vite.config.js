@@ -3,10 +3,10 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/wish/' : '/',
+  base: '/',
   plugins: [
     react(),
-    VitePWA({
+    ...(mode === 'production' ? [VitePWA({
       registerType: 'autoUpdate',
       includeAssets: [
         'favicon.ico',
@@ -30,9 +30,16 @@ export default defineConfig(({ mode }) => ({
       workbox: {
         navigateFallback: '/index.html'
       }
-    })
+    })] : [])
   ],
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name].[hash][extname]',
+        chunkFileNames: 'assets/[name].[hash].js',
+        entryFileNames: 'assets/[name].[hash].js'
+      }
+    }
   }
 }));

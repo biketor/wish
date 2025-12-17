@@ -42,17 +42,17 @@ body {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 20px;
+  padding: 1.25rem;
 }
 
 main {
   width: 100%;
-  max-width: 400px;
+  max-width: 440px;
 }
 
 .container {
   width: 100%;
-  padding: 60px 24px;
+  padding: 3rem 1.5rem;
   text-align: center;
 }
 
@@ -62,7 +62,7 @@ main {
 
 /* Logo */
 .logo {
-  margin-bottom: 50px;
+  margin-bottom: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,6 +70,7 @@ main {
 
 .logo-img {
   max-width: 180px;
+  width: 100%;
   height: auto;
   filter: drop-shadow(0 4px 15px rgba(212, 175, 55, 0.2));
 }
@@ -78,8 +79,8 @@ main {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-group {
@@ -88,7 +89,7 @@ main {
 
 .form-group input {
   width: 100%;
-  padding: 14px 16px;
+  padding: 0.875rem 1rem;
   border: none;
   border-radius: 8px;
   background: var(--color-input-bg);
@@ -110,14 +111,14 @@ main {
 
 /* Checkbox */
 .checkbox-group {
-  margin: 20px 0;
+  margin: 1.25rem 0;
   text-align: left;
 }
 
 .checkbox-group label {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 0.75rem;
   font-size: 0.75rem;
   color: var(--color-text-light);
   line-height: 1.4;
@@ -135,7 +136,7 @@ main {
 
 /* Botones */
 .btn-primary {
-  padding: 14px 32px;
+  padding: 0.875rem 2rem;
   border: none;
   border-radius: 8px;
   background: var(--color-primary);
@@ -147,6 +148,8 @@ main {
   transition: all 0.3s ease;
   box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
   text-transform: uppercase;
+  width: 100%;
+  max-width: 400px;
 }
 
 .btn-primary:hover {
@@ -166,7 +169,7 @@ main {
 }
 
 .btn-secondary {
-  padding: 14px 32px;
+  padding: 0.875rem 2rem;
   border: none;
   border-radius: 8px;
   background: #ffffff;
@@ -178,6 +181,8 @@ main {
   transition: all 0.3s ease;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   text-transform: uppercase;
+  width: 100%;
+  max-width: 400px;
 }
 
 .btn-secondary:hover {
@@ -201,8 +206,8 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  margin-top: 24px;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .login-link p {
@@ -226,35 +231,39 @@ main {
 }
 
 /* ==========================================
-   RESPONSIVE
+   RESPONSIVE - Mobile First
    ========================================== */
 
-@media (max-width: 480px) {
+@media (max-width: 360px) {
   .container {
-    padding: 30px 16px;
+    padding: 2rem 1rem;
   }
-
-  .logo h1 {
-    font-size: 2rem;
-    letter-spacing: 3px;
+  
+  .logo-img {
+    max-width: 140px;
   }
-
-  .logo svg {
-    width: 60px;
-    height: 60px;
-  }
-
+  
   .form-group input {
-    padding: 12px 14px;
-    font-size: 0.95rem;
+    padding: 0.75rem 0.875rem;
+    font-size: 0.9rem;
   }
-
+  
   .btn-primary, .btn-secondary {
-    padding: 12px 28px;
-    font-size: 0.95rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
   }
-
+  
   .checkbox-group label {
     font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 4rem 2rem;
+  }
+  
+  .form-group input {
+    padding: 1rem 1.25rem;
   }
 }

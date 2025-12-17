@@ -1,0 +1,270 @@
+/* Estilos unificados para CrearDeseo - Todos los tipos */
+
+.page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  /* Todos los estilos de background se manejan via style inline */
+}
+
+.backArrow {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+}
+
+.arrowIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.15;
+  background-image: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  width: 60px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.formWrapper {
+  flex: 1;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  border-radius: 20px;
+  border: none;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: none;
+  background-color: #ffffff;
+  color: #333;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+}
+
+.label {
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  margin: 0;
+  font-weight: 300;
+  flex-shrink: 1;
+}
+
+.button {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #e8c547;
+  transform: translateY(-2px);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.error {
+  color: #ff4444;
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.spacer {
+  display: none;
+}
+
+.quote {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.quoteText {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.gold {
+  color: var(--color-primary);
+}
+
+.white {
+  color: #ffffff;
+}
+
+/* Loading Skeleton */
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.skeletonLogo {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.skeletonTextarea {
+  width: 100%;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+.skeletonButton {
+  width: 120px;
+  height: 48px;
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 25px;
+  align-self: flex-end;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .content {
+    padding: 2rem;
+  }
+  
+  .logo {
+    width: 80px;
+  }
+  
+  .header {
+    gap: 1.5rem;
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .textarea {
+    min-height: 140px;
+    padding: 1.25rem;
+    font-size: 1.1rem;
+  }
+  
+  .label {
+    font-size: 1.1rem;
+  }
+  
+  .button {
+    padding: 0.875rem 2.5rem;
+  }
+  
+  .quoteText {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .content {
+    padding: 0.75rem;
+  }
+  
+  .logo {
+    width: 45px;
+  }
+  
+  .header {
+    gap: 0.5rem;
+  }
+  
+  .textarea {
+    min-height: 90px;
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  .label {
+    font-size: 0.75rem;
+  }
+  
+  .button {
+    padding: 0.55rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  
+  .quoteText {
+    font-size: 0.95rem;
+  }
+}

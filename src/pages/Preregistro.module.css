@@ -2,13 +2,13 @@
 
 .intro {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
 }
 
 .introText {
   font-size: 1.2rem;
   line-height: 1.6;
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
   color: var(--color-primary);
 }
 
@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .btnGoogle {
@@ -33,5 +33,17 @@
   color: #ff4444;
   font-size: 0.9rem;
   text-align: center;
-  margin-top: 16px;
+  margin-top: 1rem;
+}
+
+@media (max-width: 360px) {
+  .introText {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
 }
