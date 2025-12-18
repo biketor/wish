@@ -15,6 +15,8 @@ export const guardarDeseo = async (userId, tipo, texto, userName) => {
   const deseoData = {
     texto: texto.trim(),
     userName,
+    cumplido: false,
+    fechaCreacion: new Date(),
     fechaActualizacion: new Date(),
   };
 
@@ -45,6 +47,16 @@ export const obtenerDeseo = async (userId, tipo) => {
     
     if (deseoSnap.exists()) {
       const data = deseoSnap.data();
+      
+      // Migración: Si no tiene el campo cumplido, agregarlo
+      if (data.cumplido === undefined) {
+        await setDoc(deseoRef, { 
+          cumplido: false,
+          fechaCreacion: data.fechaActualizacion || new Date()
+        }, { merge: true });
+        data.cumplido = false;
+      }
+      
       actualizarCacheLocal(userId, tipo, data);
       return data.texto;
     }
@@ -61,10 +73,58 @@ export const obtenerTodosLosDeseos = async (userId) => {
   const deseos = {};
   
   for (const tipo of tipos) {
-    deseos[tipo] = await obtenerDeseo(userId, tipo);
+    try {
+      const deseoRef = doc(db, 'users', userId, 'deseos', tipo);
+      const deseoSnap = await getDoc(deseoRef);
+      
+      if (deseoSnap.exists()) {
+        const data = deseoSnap.data();
+        
+        // Migración: Si no tiene el campo cumplido, agregarlo
+        if (data.cumplido === undefined) {
+          await setDoc(deseoRef, { 
+            cumplido: false,
+            fechaCreacion: data.fechaActualizacion || new Date()
+          }, { merge: true });
+          data.cumplido = false;
+        }
+        
+        deseos[tipo] = {
+          texto: data.texto,
+          cumplido: data.cumplido || false,
+          fechaCreacion: data.fechaCreacion,
+          fechaActualizacion: data.fechaActualizacion,
+        };
+      }
+    } catch (error) {
+      console.error(`Error obteniendo ${tipo}:`, error);
+    }
   }
   
   return deseos;
+};
+
+// Marcar deseo como cumplido/no cumplido
+export const toggleCumplidoDeseo = async (userId, tipo) => {
+  try {
+    const deseoRef = doc(db, 'users', userId, 'deseos', tipo);
+    const deseoSnap = await getDoc(deseoRef);
+    
+    if (deseoSnap.exists()) {
+      const cumplido = !deseoSnap.data().cumplido;
+      await setDoc(deseoRef, { 
+        cumplido,
+        fechaActualizacion: new Date()
+      }, { merge: true });
+      
+      return { success: true, cumplido };
+    }
+    
+    return { success: false };
+  } catch (error) {
+    console.error('Error actualizando estado de cumplido:', error);
+    throw error;
+  }
 };
 
 // Funciones de caché local
