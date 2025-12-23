@@ -17,6 +17,28 @@
   filter: drop-shadow(0 4px 20px rgba(212, 175, 55, 0.3));
 }
 
+.perfilIcon {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 20px rgba(212, 175, 55, 0.5));
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.perfilIcon:hover {
+  transform: scale(1.1);
+}
+
+.perfilIcon:active {
+  transform: scale(0.95);
+  opacity: 0.9;
+}
+
 .content {
   width: 100%;
   max-width: 500px;
@@ -87,6 +109,12 @@
     top: 1.5rem;
     left: 1.5rem;
     width: 90px;
+  }
+
+  .perfilIcon {
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 45px;
   }
 
   .triskelImage {

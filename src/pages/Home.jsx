@@ -37,6 +37,12 @@ const Home = () => {
   return (
     <div className={styles.page}>
       <img src="/assets/logo.png" alt="WIZH" className={styles.logo} />
+      <img 
+        src="/assets/perfil.png" 
+        alt="Perfil" 
+        className={styles.perfilIcon}
+        onClick={() => navigate('/perfil')}
+      />
       
       <div className={styles.content}>
         <img 
