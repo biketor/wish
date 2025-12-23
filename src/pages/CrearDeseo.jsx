@@ -107,7 +107,7 @@ function CrearDeseo({ tipo = 'deseo1' }) {
       // Limpiar el campo y navegar al siguiente
       if (config.nextRoute) {
         setDeseo(''); // Limpiar antes de navegar
-        setTimeout(() => navigate(config.nextRoute), 800);
+        navigate(config.nextRoute);
       }
     } catch (error) {
       console.error('Error al guardar deseo:', error);
