@@ -68,19 +68,24 @@ const Reel = () => {
           setEstado('exito');
           toast.success('¡Movimiento completado correctamente!');
           window.removeEventListener('deviceorientation', manejarMovimiento);
+          
+          // Redirigir al home después de 2 segundos
+          setTimeout(() => {
+            navigate('/home');
+          }, 2000);
         }
       }
     };
 
     window.addEventListener('deviceorientation', manejarMovimiento);
 
-    // Timeout de 15 segundos
+    // Timeout de 10 segundos
     const timeout = setTimeout(() => {
       if (estado === 'activo') {
         setEstado('fallo');
         toast.error('Intenta nuevamente. Recuerda hacer un 8 horizontal.');
       }
-    }, 15000);
+    }, 10000);
 
     return () => {
       window.removeEventListener('deviceorientation', manejarMovimiento);
@@ -93,25 +98,36 @@ const Reel = () => {
     const trayectoria = trayectoriaRef.current;
     if (trayectoria.length < 100) return false;
 
-    // Extraer valores Y (movimiento horizontal)
+    // Extraer valores X (vertical) e Y (horizontal)
+    const valoresX = trayectoria.map(p => p.x);
     const valoresY = trayectoria.map(p => p.y);
     
-    // Detectar cruces por el centro
+    // Rangos de movimiento
+    const rangoX = Math.max(...valoresX) - Math.min(...valoresX);
+    const rangoY = Math.max(...valoresY) - Math.min(...valoresY);
+    
+    // El movimiento debe ser predominantemente HORIZONTAL
+    // Ratio Y/X debe ser al menos 2:1 (el doble de movimiento horizontal que vertical)
+    if (rangoY < rangoX * 2) {
+      return false;
+    }
+    
+    // Detectar cruces por el centro en el eje horizontal (Y)
     let cruces = 0;
-    const centro = (Math.max(...valoresY) + Math.min(...valoresY)) / 2;
+    const centroY = (Math.max(...valoresY) + Math.min(...valoresY)) / 2;
     
     for (let i = 1; i < valoresY.length; i++) {
-      if ((valoresY[i-1] < centro && valoresY[i] >= centro) ||
-          (valoresY[i-1] > centro && valoresY[i] <= centro)) {
+      if ((valoresY[i-1] < centroY && valoresY[i] >= centroY) ||
+          (valoresY[i-1] > centroY && valoresY[i] <= centroY)) {
         cruces++;
       }
     }
 
-    // Un 8 horizontal debe cruzar el centro al menos 3 veces
-    // y tener movimiento amplio
-    const rangoY = Math.max(...valoresY) - Math.min(...valoresY);
-    
-    return cruces >= 3 && rangoY > 30;
+    // Un 8 horizontal debe:
+    // - Cruzar el centro al menos 4 veces (2 bucles)
+    // - Tener movimiento horizontal amplio (>40 grados)
+    // - Movimiento vertical limitado (<30 grados)
+    return cruces >= 4 && rangoY > 40 && rangoX < 30;
   };
 
   const reintentar = () => {

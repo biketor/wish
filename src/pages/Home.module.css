@@ -1,0 +1,135 @@
+.page {
+  min-height: 100vh;
+  background: url(/assets/fondo-home.png) center/cover no-repeat fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 4px 20px rgba(212, 175, 55, 0.3));
+}
+
+.perfilIcon {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 20px rgba(212, 175, 55, 0.5));
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.perfilIcon:hover {
+  transform: scale(1.1);
+}
+
+.perfilIcon:active {
+  transform: scale(0.95);
+  opacity: 0.9;
+}
+
+.content {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.triskelImage {
+  max-width: 40%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 30px rgba(212, 175, 55, 0.4));
+  cursor: pointer;
+  animation: pulse 2s ease-in-out infinite;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.triskelImage:active {
+  opacity: 0.9;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.estadisticas {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(13, 35, 76, 0.95);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.cantidadCumplidos {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  margin-left: 0.5rem;
+}
+
+.textoCumplidos {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #d4af37;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .page {
+    padding: 1.5rem;
+  }
+
+  .logo {
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 90px;
+  }
+
+  .perfilIcon {
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 45px;
+  }
+
+  .triskelImage {
+    max-width: 50%;
+  }
+
+  .estadisticas {
+    padding: 1rem;
+  }
+
+  .textoCumplidos {
+    font-size: 1rem;
+  }
+
+  .cantidadCumplidos {
+    font-size: 0.9rem;
+  }
+}
