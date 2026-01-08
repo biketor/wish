@@ -56,13 +56,13 @@ const Reel = () => {
 
       trayectoriaRef.current.push(posicion);
 
-      // Mantener solo los últimos 150 puntos (aproximadamente 3 segundos)
-      if (trayectoriaRef.current.length > 150) {
+      // Mantener solo los últimos 120 puntos (aproximadamente 2.5 segundos)
+      if (trayectoriaRef.current.length > 120) {
         trayectoriaRef.current.shift();
       }
 
-      // Analizar si completó el 8 horizontal
-      if (trayectoriaRef.current.length > 100) {
+      // Analizar si completó el 8 horizontal (empezar a analizar con menos puntos)
+      if (trayectoriaRef.current.length > 60) {
         const resultado = detectarOchoHorizontal();
         if (resultado) {
           setEstado('exito');
@@ -96,7 +96,7 @@ const Reel = () => {
   // Algoritmo para detectar patrón de 8 horizontal
   const detectarOchoHorizontal = () => {
     const trayectoria = trayectoriaRef.current;
-    if (trayectoria.length < 100) return false;
+    if (trayectoria.length < 80) return false;
 
     // Extraer valores X (vertical) e Y (horizontal)
     const valoresX = trayectoria.map(p => p.x);
@@ -106,9 +106,12 @@ const Reel = () => {
     const rangoX = Math.max(...valoresX) - Math.min(...valoresX);
     const rangoY = Math.max(...valoresY) - Math.min(...valoresY);
     
+    console.log('Detección 8:', { rangoX, rangoY, puntos: trayectoria.length });
+    
     // El movimiento debe ser predominantemente HORIZONTAL
-    // Ratio Y/X debe ser al menos 2:1 (el doble de movimiento horizontal que vertical)
-    if (rangoY < rangoX * 2) {
+    // Ratio Y/X debe ser al menos 1.5:1 (más flexible)
+    if (rangoY < rangoX * 1.5) {
+      console.log('❌ No es horizontal suficiente');
       return false;
     }
     
@@ -123,11 +126,19 @@ const Reel = () => {
       }
     }
 
-    // Un 8 horizontal debe:
-    // - Cruzar el centro al menos 4 veces (2 bucles)
-    // - Tener movimiento horizontal amplio (>40 grados)
-    // - Movimiento vertical limitado (<30 grados)
-    return cruces >= 4 && rangoY > 40 && rangoX < 30;
+    console.log('Cruces detectados:', cruces);
+
+    // Un 8 horizontal debe (criterios más flexibles):
+    // - Cruzar el centro al menos 3 veces (más fácil)
+    // - Tener movimiento horizontal amplio (>30 grados, reducido)
+    // - Movimiento vertical limitado (<40 grados, más permisivo)
+    const cumple = cruces >= 3 && rangoY > 30 && rangoX < 40;
+    
+    if (cumple) {
+      console.log('✅ 8 horizontal detectado!');
+    }
+    
+    return cumple;
   };
 
   const reintentar = () => {
