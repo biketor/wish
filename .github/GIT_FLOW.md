@@ -29,6 +29,9 @@ git checkout main
 # Cambiar a un branch remoto que no tienes localmente
 git fetch origin
 git checkout nombre-branch
+# O con el comando moderno
+git switch develop
+git switch main
 ```
 
 ### Ver Branches
