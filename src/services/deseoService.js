@@ -5,14 +5,18 @@ const CACHE_KEY = 'wizh_deseos_cache';
 const CACHE_TIMESTAMP_KEY = 'wizh_deseos_timestamp';
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutos
 
-// Estructura de datos optimizada: /users/{uid}/deseos/{tipo}
+// Estructura de datos optimizada: /deseos/{docId}
 export const guardarDeseo = async (userId, tipo, texto, userName) => {
   if (!texto?.trim()) {
     throw new Error('El deseo no puede estar vacío');
   }
 
-  const deseoRef = doc(db, 'users', userId, 'deseos', tipo);
+  // Crear ID único: userId_tipo (ej: abc123_deseo1)
+  const docId = `${userId}_${tipo}`;
+  const deseoRef = doc(db, 'deseos', docId);
   const deseoData = {
+    userId,
+    tipo,
     texto: texto.trim(),
     userName,
     cumplido: false,
@@ -42,7 +46,8 @@ export const obtenerDeseo = async (userId, tipo) => {
 
   // Si no hay caché, consultar Firebase
   try {
-    const deseoRef = doc(db, 'users', userId, 'deseos', tipo);
+    const docId = `${userId}_${tipo}`;
+    const deseoRef = doc(db, 'deseos', docId);
     const deseoSnap = await getDoc(deseoRef);
     
     if (deseoSnap.exists()) {
@@ -74,7 +79,8 @@ export const obtenerTodosLosDeseos = async (userId) => {
   
   for (const tipo of tipos) {
     try {
-      const deseoRef = doc(db, 'users', userId, 'deseos', tipo);
+      const docId = `${userId}_${tipo}`;
+      const deseoRef = doc(db, 'deseos', docId);
       const deseoSnap = await getDoc(deseoRef);
       
       if (deseoSnap.exists()) {
@@ -107,7 +113,8 @@ export const obtenerTodosLosDeseos = async (userId) => {
 // Marcar deseo como cumplido/no cumplido
 export const toggleCumplidoDeseo = async (userId, tipo) => {
   try {
-    const deseoRef = doc(db, 'users', userId, 'deseos', tipo);
+    const docId = `${userId}_${tipo}`;
+    const deseoRef = doc(db, 'deseos', docId);
     const deseoSnap = await getDoc(deseoRef);
     
     if (deseoSnap.exists()) {
@@ -181,8 +188,9 @@ export const sincronizarPendientes = async () => {
     if (pendientes.length === 0) return;
 
     for (const item of pendientes) {
-      const deseoRef = doc(db, 'users', item.userId, 'deseos', item.tipo);
-      await setDoc(deseoRef, item.data, { merge: true });
+      const docId = `${item.userId}_${item.tipo}`;
+      const deseoRef = doc(db, 'deseos', docId);
+      await setDoc(deseoRef, { ...item.data, userId: item.userId, tipo: item.tipo }, { merge: true });
     }
 
     localStorage.removeItem('wizh_pendientes');

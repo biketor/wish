@@ -22,7 +22,7 @@ const Perfil = () => {
 
       try {
         // Cargar foto de perfil
-        const userDoc = await getDoc(doc(db, 'users', usuario.uid));
+        const userDoc = await getDoc(doc(db, 'usuarios', usuario.uid));
         if (userDoc.exists() && userDoc.data().fotoPerfil) {
           setFotoPerfil(userDoc.data().fotoPerfil);
         }
@@ -47,6 +47,13 @@ const Perfil = () => {
     const archivo = e.target.files[0];
     if (!archivo) return;
 
+    // Validar que el usuario esté autenticado
+    if (!usuario?.uid) {
+      toast.error('Debes iniciar sesión para subir una foto');
+      navigate('/login');
+      return;
+    }
+
     // Validar tipo de archivo
     if (!archivo.type.startsWith('image/')) {
       toast.error('Por favor selecciona una imagen válida');
@@ -62,15 +69,16 @@ const Perfil = () => {
     setCargandoFoto(true);
 
     try {
-      // Subir a Firebase Storage
-      const storageRef = ref(storage, `fotos-perfil/${usuario.uid}.${archivo.name.split('.').pop()}`);
+      // Subir a Firebase Storage con la ruta correcta según las reglas
+      const extension = archivo.name.split('.').pop();
+      const storageRef = ref(storage, `usuarios/${usuario.uid}/perfil/foto.${extension}`);
       const snapshot = await uploadBytes(storageRef, archivo);
       
       // Obtener URL de descarga
       const urlDescarga = await getDownloadURL(snapshot.ref);
       
       // Actualizar en Firestore (crear documento si no existe)
-      const userRef = doc(db, 'users', usuario.uid);
+      const userRef = doc(db, 'usuarios', usuario.uid);
       await setDoc(userRef, {
         fotoPerfil: urlDescarga,
         email: usuario.email,
